@@ -9,8 +9,8 @@ root.get(middleware.auth, service.getAllProducts)
 root.post(middleware.auth, service.createProduct)
 
 const id = router.route('/:id')
-root.get(middleware.auth, service.getProduct)
-root.put(middleware.auth, service.editProduct)
-root.delete(middleware.auth, service.deleteProduct)
+id.get(middleware.auth, service.getProduct)
+id.put(middleware.auth, service.editProduct)
+id.delete(middleware.auth, service.deleteProduct)
 
 module.exports = router

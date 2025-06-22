@@ -30,3 +30,7 @@ const productSchema = mongoose.Schema({
     default: true
   }
 })
+
+const ProductModel = mongoose.model('product', productSchema)
+
+module.exports = ProductModel
