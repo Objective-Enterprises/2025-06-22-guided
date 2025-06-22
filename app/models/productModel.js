@@ -14,7 +14,7 @@ const productSchema = mongoose.Schema({
     required: true
   },
   quantityInStock: {
-    type: Number
+    type: Number,
     required: true
   },
   image: {
