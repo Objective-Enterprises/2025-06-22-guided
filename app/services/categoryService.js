@@ -2,7 +2,10 @@ const categoryRepository = require("..//database/repositories/categoryRepository
 const expressAsyncHandler = require("express-async-handler");
 
 const createCategory = expressAsyncHandler(async (req, res) => {
-  /* WRITE YOUR CODE HERE */
+  const category = await categoryRepository.createCategory(
+    req.body.name, req.body.description
+  )
+  res.status(201).send(category)
 });
 
 const editCategory = expressAsyncHandler(async (req, res) => {

@@ -1,23 +1,62 @@
 const CategoryModel = require("../../models/categoryModel");
 
 const createCategory = async (name, description) => {
-  /* WRITE YOUR CODE HERE */
+  const category = await CategoryModel.create({
+    name, description
+  })
+  return category
 };
 
 const editCategory = async (categoryId, newData) => {
-  /* WRITE YOUR CODE HERE */
+  const existing = await CategoryModel.findOne({
+    _id: categoryId,
+    isActive: true
+  })
+
+  if (!existing) {
+    throw new Error('Category not found')
+  }
+
+  existing.name = newData.name
+  existing.description = newData.description
+
+  const updated = await existing.save()
+  return updated
 };
 
 const deleteCategory = async (categoryId) => {
-  /* WRITE YOUR CODE HERE */
+  const existing = await CategoryModel.findOne({
+    _id: categoryId,
+    isActive: true
+  })
+
+  if (!existing) {
+    throw new Error('Category not found')
+  }
+
+  existing.isActive = false
+  const updated = await existing.save()
+  return updated
 };
 
 const getCategory = async (categoryId) => {
-  /* WRITE YOUR CODE HERE */
+  const existing = await CategoryModel.findOne({
+    _id: categoryId,
+    isActive: true
+  })
+
+  if (!existing) {
+    throw new Error('Category not found')
+  }
+
+  return existing
 };
 
 const getAllCategories = async () => {
-  /* WRITE YOUR CODE HERE */
+  const categories = await CategoryModel.find({
+    isActive: true
+  })
+  return categories
 };
 
 module.exports = {
