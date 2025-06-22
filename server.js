@@ -9,6 +9,7 @@ const userRouter = require("./app/routes/userRoutes");
 const categoryRouter = require('./app/routes/categoryRoutes')
 const cartRouter = require("./app/routes/cartRoutes");
 const orderRouter = require("./app/routes/orderRoutes");
+const productRouter = require('./app/routers/productRoutes')
 
 const app = express();
 
@@ -38,8 +39,7 @@ app.use(errorHandler);
 // Using routers for different API endpoints
 app.use("/api/v1/users", userRouter);
 app.use('/api/v1/categories', categoryRouter)
-/* WRITE YOUR CODE HERE TO USE OTHER ROUTERS FOR DIFFERENT API ENDPOINTS */
-
+app.use('/api/v1/products', productRouter)
 app.use("/api/v1/carts", cartRouter);
 app.use("/api/v1/orders", orderRouter);
 
