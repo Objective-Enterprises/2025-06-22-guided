@@ -13,7 +13,6 @@ function decodingSessionToken(req, res, next) {
         const sessionToken = req.headers.authorization.split(' ')[1];
         const decodedToken = jwt.verify(sessionToken, JWT_SECRET_KEY);
         
-        console.log(decodedToken);
         req.decodedSessionToken = sessionToken;
         
         next();

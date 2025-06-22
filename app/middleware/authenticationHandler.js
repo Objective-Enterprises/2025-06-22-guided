@@ -6,22 +6,17 @@ const { JWT_SECRET_KEY } = require("../constants");
 
 const auth = asyncHandler(async (req, res, next) => {
   let token;
-  console.log(req)
-  console.log(req.headers.authorization)
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith("Bearer")
   ) {
     try {
       token = req.headers.authorization.split(" ")[1];
-      console.log(token)
 
       const userSessionObject = await UserSessionModel.findOne({
         sessionToken: token,
         isActive: true,
       });
-
-      console.log(userSessionObject);
 
       if (!userSessionObject) {
         console.log("No user session");

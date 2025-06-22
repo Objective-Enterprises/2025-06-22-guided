@@ -9,19 +9,25 @@ const createCategory = expressAsyncHandler(async (req, res) => {
 });
 
 const editCategory = expressAsyncHandler(async (req, res) => {
-  /* WRITE YOUR CODE HERE */
+  const category = await categoryRepository.editCategory(
+    req.params.id, req.body
+  )
+  res.status(200).send(category)
 });
 
 const deleteCategory = expressAsyncHandler(async (req, res) => {
-  /* WRITE YOUR CODE HERE */
+  const category = await categoryRepository.deleteCategory(req.params.id)
+  res.status(200).send(category)
 });
 
 const getCategory = expressAsyncHandler(async (req, res) => {
-  /* WRITE YOUR CODE HERE */
+  const category = await categoryRepository.getCategory(req.params.id)
+  res.status(200).send(category)
 });
 
 const getAllCategories = expressAsyncHandler(async (req, res) => {
-  /* WRITE YOUR CODE HERE */
+  const categories = await categoryRepository.getAllCategories()
+  res.status(200).send(categories)
 });
 
 module.exports = {
