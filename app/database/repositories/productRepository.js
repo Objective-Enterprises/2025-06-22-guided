@@ -8,23 +8,65 @@ const createProduct = async (
   image,
   categoryId
 ) => {
-  /* WRITE YOUR CODE HERE */
+  const product = await ProductModel.create({
+    name, description, price, quantityInStock, image, categoryId
+  })
+  return product
 };
 
 const editProduct = async (productId, newData) => {
-  /* WRITE YOUR CODE HERE */
+  const existing = await ProductModel.findOne({
+    _id: productId,
+    isActive: true
+  })
+
+  if (!existing) {
+    throw new Error('Product not found')
+  }
+
+  existing.name = newData.name
+  existing.description = newData.description
+  existing.price = newData.price
+  existing.quantityInStock = newData.quantityInStock
+  existing.image = newData.image
+  existing.categoryId = newData.categoryId
+  const updated = await existing.save()
+  return updated
 };
 
 const deleteProduct = async (productId) => {
-  /* WRITE YOUR CODE HERE */
+  const existing = await ProductModel.findOne({
+    _id: productId,
+    isActive: true
+  })
+
+  if (!existing) {
+    throw new Error('Product not found')
+  }
+
+  existing.isActive = false
+  const updated = await existing.save()
+  return updated
 };
 
 const getProduct = async (productId) => {
-  /* WRITE YOUR CODE HERE */
+  const existing = await ProductModel.findOne({
+    _id: productId,
+    isActive: true
+  })
+
+  if (!existing) {
+    throw new Error('Product not found')
+  }
+  
+  return existing
 };
 
 const getAllProducts = async () => {
-  /* WRITE YOUR CODE HERE */
+  const products = await ProductModel.find({
+    isActive: true
+  })
+  return products
 };
 
 
