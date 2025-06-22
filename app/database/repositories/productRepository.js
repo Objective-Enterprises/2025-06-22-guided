@@ -1,4 +1,5 @@
 const ProductModel = require("../../models/productModel");
+const category = require('./categoryRepository')
 
 const createProduct = async (
   name,
@@ -8,6 +9,7 @@ const createProduct = async (
   image,
   categoryId
 ) => {
+  await category.getCategory(categoryId)
   const product = await ProductModel.create({
     name, description, price, quantityInStock, image, categoryId
   })
